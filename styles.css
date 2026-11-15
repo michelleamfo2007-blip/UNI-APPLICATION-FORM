@@ -313,6 +313,10 @@ h1 {
   cursor: pointer;
 }
 
+.button[hidden] {
+  display: none !important;
+}
+
 .button:hover {
   background: #f0c53a;
 }
@@ -373,6 +377,25 @@ fieldset:not(.is-current) {
   color: var(--navy);
   box-shadow: none;
   border: 1px solid #d5deea;
+}
+
+#step-next {
+  background: var(--navy);
+  color: white;
+}
+
+#step-next:hover {
+  background: #1b4f93;
+}
+
+#step-submit {
+  background: #f5c518;
+  color: #06264d;
+  box-shadow: 0 10px 24px rgba(245, 197, 24, 0.45);
+}
+
+#step-submit:hover {
+  background: #ffd84a;
 }
 
 fieldset {

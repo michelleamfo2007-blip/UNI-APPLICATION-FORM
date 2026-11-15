@@ -31,7 +31,7 @@
       <p class="eyebrow">Application received</p>
       <h1 id="heading">You have successfully submitted your application</h1>
       <p id="detail">
-        Thank you. Your application to Ghana Communication Technology University has been submitted. An email will be sent to you with the next steps.
+        Thank you. Your application to Ghana Communication Technology University has been submitted. This page is your confirmation.
       </p>
       <p class="cta">
         <a class="button" href="index.html">Back to campus</a>
@@ -71,9 +71,9 @@
     }
 
     if (email && course) {
-      detail.textContent = "Your application for " + course + " at Ghana Communication Technology University has been submitted. A confirmation email has been sent to " + email + ".";
+      detail.textContent = "Your application for " + course + " has been submitted. This is your confirmation for " + email + ".";
     } else if (email) {
-      detail.textContent = "Your application has been submitted. A confirmation email has been sent to " + email + ".";
+      detail.textContent = "Your application has been submitted. This is your confirmation for " + email + ".";
     }
 
     const confetti = document.getElementById("confetti");

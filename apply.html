@@ -425,32 +425,8 @@
       sendError.textContent = "";
       submitButton.disabled = true;
 
-      resultsPayload()
-        .then((results) => fetch("/apply", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            course: course,
-            resultName: results.resultName,
-            resultFile: results.resultFile || ""
-          })
-        }))
-        .then((response) => response.json().then((data) => ({ ok: response.ok, data: data })))
-        .then((result) => {
-          if (!result.ok || !result.data.ok) {
-            sendError.textContent = result.data.error || "The confirmation email could not be sent.";
-            submitButton.disabled = false;
-            return;
-          }
-          const params = new URLSearchParams({ name: name, email: email, course: course });
-          window.location.href = "success.html?" + params.toString();
-        })
-        .catch(() => {
-          sendError.textContent = "The confirmation email could not be sent. Open the site from the local server, not as a file.";
-          submitButton.disabled = false;
-        });
+      const params = new URLSearchParams({ name: name, email: email, course: course });
+      window.location.href = "success.html?" + params.toString();
     });
   </script>
 </body>
