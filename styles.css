@@ -575,12 +575,16 @@ textarea {
 .gallery td:nth-child(3) figure { animation-delay: 0.2s; }
 
 .ticker {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 1.3rem;
+  margin-bottom: 0.2rem;
   overflow: hidden;
-  margin: 1.3rem 0 0.2rem;
-  border-radius: 999px;
   background: var(--navy-deep);
   color: white;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
 }
 
 .ticker-track {
