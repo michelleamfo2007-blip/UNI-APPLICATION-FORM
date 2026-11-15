@@ -22,7 +22,8 @@ class ApplyServlet < WEBrick::HTTPServlet::AbstractServlet
       return json(res, 503, ok: false, error: "Email is not set up yet. Add mail_config.json with the sender account.")
     end
 
-    send_confirmation(config, name, email, course)
+    saved = save_results(data["resultName"], data["resultFile"])
+    send_confirmation(config, name, email, course, saved)
     json(res, 200, ok: true)
   rescue StandardError => e
     json(res, 500, ok: false, error: "The email could not be sent. #{e.message}")
@@ -41,12 +42,29 @@ class ApplyServlet < WEBrick::HTTPServlet::AbstractServlet
     config
   end
 
-  def send_confirmation(config, name, email, course)
+  def save_results(name, encoded)
+    return nil if encoded.to_s.empty?
+    original = File.basename(name.to_s)
+    return nil unless original =~ /\.(pdf|jpe?g|png)\z/i && original.length <= 120
+    bytes = encoded.unpack1("m")
+    return nil if bytes.nil? || bytes.bytesize > 5 * 1024 * 1024
+    folder = File.join(ROOT, "uploads")
+    Dir.mkdir(folder) unless Dir.exist?(folder)
+    stored = "#{Time.now.to_i}-#{original.gsub(/[^A-Za-z0-9._-]/, "_")}"
+    File.binwrite(File.join(folder, stored), bytes)
+    original
+  rescue StandardError
+    nil
+  end
+
+  def send_confirmation(config, name, email, course, result_name)
     from = config["from"].to_s.empty? ? config["user"] : config["from"]
+    results_line = result_name ? "Your result slip (#{result_name}) was received with the application." : "No result slip was attached. You can send it when the results are out."
     body = <<~TEXT
       Hello #{name},
 
       Your application for #{course} at Ghana Communication Technology University has been received.
+      #{results_line}
       This email is your confirmation. Keep it for your records.
 
       Admissions office

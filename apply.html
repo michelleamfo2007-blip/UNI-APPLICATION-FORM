@@ -153,6 +153,12 @@
             Elective subjects and grades
             <textarea name="electives" required placeholder="Example: Elective Mathematics B2, Physics B3, Chemistry C4"></textarea>
           </label>
+          <label class="wide">
+            Upload your results
+            <input type="file" name="results" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <span class="hint">WASSCE, SSSCE, GBCE, HND, or any other result slip. PDF or photo, up to 5 MB. Leave this blank if the results are not out yet.</span>
+            <span id="results-name" class="file-name"></span>
+          </label>
         </div>
       </fieldset>
 
@@ -376,6 +382,38 @@
 
     backButton.addEventListener("click", () => showStep(step - 1));
 
+    const resultsInput = form.elements.results;
+    const resultsName = document.getElementById("results-name");
+
+    resultsInput.addEventListener("change", () => {
+      const file = resultsInput.files[0];
+      if (!file) {
+        resultsName.textContent = "";
+        return;
+      }
+      const allowed = /\.(pdf|jpe?g|png)$/i.test(file.name);
+      if (!allowed || file.size > 5 * 1024 * 1024) {
+        resultsInput.value = "";
+        resultsName.textContent = "Choose a PDF, JPG, or PNG that is under 5 MB.";
+        return;
+      }
+      resultsName.textContent = "Ready to upload: " + file.name;
+    });
+
+    function resultsPayload() {
+      const file = resultsInput.files[0];
+      if (!file) return Promise.resolve({ resultName: "" });
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const encoded = String(reader.result).split(",")[1] || "";
+          resolve({ resultName: file.name, resultFile: encoded });
+        };
+        reader.onerror = () => reject(new Error("The result file could not be read."));
+        reader.readAsDataURL(file);
+      });
+    }
+
     const sendError = document.getElementById("send-error");
 
     form.addEventListener("submit", (event) => {
@@ -387,11 +425,18 @@
       sendError.textContent = "";
       submitButton.disabled = true;
 
-      fetch("/apply", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, email: email, course: course })
-      })
+      resultsPayload()
+        .then((results) => fetch("/apply", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            course: course,
+            resultName: results.resultName,
+            resultFile: results.resultFile || ""
+          })
+        }))
         .then((response) => response.json().then((data) => ({ ok: response.ok, data: data })))
         .then((result) => {
           if (!result.ok || !result.data.ok) {

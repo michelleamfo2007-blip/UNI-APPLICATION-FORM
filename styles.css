@@ -747,6 +747,22 @@ textarea {
   font-weight: 700;
 }
 
+.hint,
+.file-name {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-weight: 550;
+}
+
+.file-name {
+  color: var(--navy);
+}
+
+input[type="file"] {
+  padding: 0.55rem;
+}
+
 .progress-wrap p {
   margin: 0.4rem 0 0;
   color: var(--muted);
