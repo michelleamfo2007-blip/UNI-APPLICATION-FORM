@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghana Communication Technology University | Application</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">G</span>
+      <span>
+        <strong>Ghana Communication Technology University</strong>
+        <span>Admissions</span>
+      </span>
+    </a>
+    <nav>
+      <a href="index.html">Campus</a>
+      <a href="apply.html" aria-current="page">Apply</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro">
+      <p class="eyebrow">September 2026 intake</p>
+      <h1>University application</h1>
+      <p class="lede">
+        Fill in your personal details, school results, the programme you want, and a parent or guardian. After you submit, a confirmation page will tell you that an email is on the way.
+      </p>
+      <div class="progress-wrap">
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="progress-label">0% of the form is complete</p>
+      </div>
+    </section>
+
+    <form id="application" action="success.html" method="get">
+      <fieldset>
+        <legend>Personal details</legend>
+        <div class="fields">
+          <label>
+            Full name
+            <input type="text" name="full-name" required autocomplete="name">
+          </label>
+          <label>
+            Date of birth
+            <input type="date" name="date-of-birth" required>
+          </label>
+          <label>
+            Gender
+            <select name="gender" required>
+              <option value="">Select</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>Prefer not to say</option>
+            </select>
+          </label>
+          <label>
+            Nationality
+            <input type="text" name="nationality" value="Ghanaian" required>
+          </label>
+          <label>
+            Ghana Card or other ID number
+            <input type="text" name="id-number" required>
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required autocomplete="tel" placeholder="024 000 0000">
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>
+            Region
+            <select name="region" required>
+              <option value="">Select your region</option>
+              <option>Greater Accra</option>
+              <option>Ashanti</option>
+              <option>Ahafo</option>
+              <option>Bono</option>
+              <option>Bono East</option>
+              <option>Central</option>
+              <option>Eastern</option>
+              <option>North East</option>
+              <option>Northern</option>
+              <option>Oti</option>
+              <option>Savannah</option>
+              <option>Upper East</option>
+              <option>Upper West</option>
+              <option>Volta</option>
+              <option>Western</option>
+              <option>Western North</option>
+              <option>Outside Ghana</option>
+            </select>
+          </label>
+          <label class="wide">
+            Residential address
+            <textarea name="address" required autocomplete="street-address"></textarea>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Educational history</legend>
+        <div class="fields">
+          <label>
+            Senior high school or last school
+            <input type="text" name="school" required>
+          </label>
+          <label>
+            Qualification
+            <select name="qualification" required>
+              <option value="">Select</option>
+              <option>WASSCE</option>
+              <option>SSSCE</option>
+              <option>GBCE</option>
+              <option>HND</option>
+              <option>GCTU Diploma</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Year of examination
+            <input type="number" name="year-completed" min="1990" max="2026" required>
+          </label>
+          <label>
+            WAEC index number
+            <input type="text" name="index-number" placeholder="If you sat WASSCE or SSSCE">
+          </label>
+          <label>
+            English Language grade
+            <input type="text" name="english-grade" placeholder="For example, B3" required>
+          </label>
+          <label>
+            Core Mathematics grade
+            <input type="text" name="maths-grade" placeholder="For example, C5" required>
+          </label>
+          <label class="wide">
+            Integrated Science or Social Studies grade
+            <input type="text" name="core-grade" required>
+          </label>
+          <label class="wide">
+            Elective subjects and grades
+            <textarea name="electives" required placeholder="Example: Elective Mathematics B2, Physics B3, Chemistry C4"></textarea>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Course information</legend>
+        <div class="fields">
+          <label>
+            Faculty
+            <select name="faculty" required>
+              <option value="">Select a faculty</option>
+              <option>Faculty of Computing and Information Systems</option>
+              <option>Faculty of Engineering</option>
+              <option>GCTU Business School</option>
+            </select>
+          </label>
+          <label>
+            Programme
+            <select name="course" required>
+              <option value="">Select a programme</option>
+              <optgroup label="Computing and Information Systems">
+                <option>BSc Information Technology</option>
+                <option>BSc Computer Science</option>
+                <option>BSc Computer Science (Cyber Security)</option>
+                <option>BSc Software Engineering</option>
+                <option>BSc Data Science and Analytics</option>
+                <option>BSc Mobile Computing</option>
+                <option>BSc Information Systems</option>
+                <option>BSc Networking and Systems Administration</option>
+                <option>BSc Internet of Things and Big Data</option>
+                <option>BSc Web Application Development</option>
+                <option>Diploma in Information Technology</option>
+                <option>Diploma in Computer Science</option>
+                <option>Diploma in Cyber Security</option>
+                <option>Diploma in Data Science and Analytics</option>
+                <option>Diploma in Web Application Development</option>
+                <option>Diploma in Multimedia Technology</option>
+              </optgroup>
+              <optgroup label="Engineering">
+                <option>BSc Telecommunications Engineering</option>
+                <option>BSc Computer Engineering</option>
+                <option>BSc Electrical and Electronic Engineering</option>
+                <option>BSc Mathematics</option>
+                <option>BSc Actuarial Science with Data Analytics</option>
+                <option>BSc Computational Statistics</option>
+                <option>Diploma in Telecommunications Engineering</option>
+                <option>Diploma in Computational Statistics</option>
+              </optgroup>
+              <optgroup label="Business School">
+                <option>BSc Accounting with Computing</option>
+                <option>BSc Economics</option>
+                <option>BSc Procurement and Logistics</option>
+                <option>BSc E-Commerce and Marketing Management</option>
+                <option>BSc Financial Technology</option>
+                <option>BSc Business Administration (Accounting)</option>
+                <option>BSc Business Administration (Banking and Finance)</option>
+                <option>BSc Business Administration (Human Resource Management)</option>
+                <option>BSc Business Administration (Management)</option>
+                <option>BSc Business Administration (Marketing)</option>
+                <option>Diploma in Public Relations</option>
+                <option>Diploma in Administration (Accounting)</option>
+                <option>Diploma in Administration (Management)</option>
+                <option>Diploma in Administration (Marketing)</option>
+              </optgroup>
+            </select>
+          </label>
+          <label>
+            Level of entry
+            <select name="level" required>
+              <option value="">Select</option>
+              <option>Degree, Level 100 (4 years)</option>
+              <option>Diploma (2 years)</option>
+              <option>Top-up, Level 200</option>
+              <option>Top-up, Level 300</option>
+            </select>
+          </label>
+          <label>
+            How you qualify
+            <select name="entry" required>
+              <option value="">Select</option>
+              <option>WASSCE or SSSCE</option>
+              <option>Mature applicant</option>
+              <option>HND or diploma top-up</option>
+              <option>International qualification</option>
+            </select>
+          </label>
+          <label>
+            Campus
+            <select name="campus" required>
+              <option value="">Select a campus</option>
+              <option>Tesano (main campus)</option>
+              <option>Abeka</option>
+              <option>Kumasi</option>
+              <option>Ho</option>
+              <option>Koforidua</option>
+              <option>Takoradi</option>
+              <option>Nungua</option>
+            </select>
+          </label>
+          <label>
+            Intake
+            <select name="intake" required>
+              <option value="">Select</option>
+              <option>September 2026</option>
+            </select>
+          </label>
+          <label class="wide">
+            Why do you want this programme?
+            <textarea name="statement" required></textarea>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Parent or guardian information</legend>
+        <div class="fields">
+          <label>
+            Parent or guardian name
+            <input type="text" name="guardian-name" required>
+          </label>
+          <label>
+            Relationship
+            <input type="text" name="relationship" placeholder="Mother, father, or guardian" required>
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="guardian-phone" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="guardian-email" required>
+          </label>
+          <label>
+            Occupation
+            <input type="text" name="occupation">
+          </label>
+          <label>
+            Town or city
+            <input type="text" name="guardian-town" required>
+          </label>
+          <label class="wide">
+            Address
+            <textarea name="guardian-address" required></textarea>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button class="button" type="submit">Submit application</button>
+        <a class="ghost" href="index.html">Back to campus</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    Ghana Communication Technology University · Admissions · This practice form opens a confirmation page in your browser.
+  </footer>
+
+  <script>
+    const form = document.getElementById("application");
+    const progressBar = document.getElementById("progress-bar");
+    const progressLabel = document.getElementById("progress-label");
+    const requiredFields = Array.from(form.querySelectorAll("[required]"));
+
+    function updateProgress() {
+      const done = requiredFields.filter((field) => field.value.trim() !== "").length;
+      const percent = Math.round((done / requiredFields.length) * 100);
+      progressBar.style.width = percent + "%";
+      progressLabel.textContent = percent + "% of the form is complete";
+      form.querySelectorAll("fieldset").forEach((section) => {
+        const fields = Array.from(section.querySelectorAll("[required]"));
+        const complete = fields.length > 0 && fields.every((field) => field.value.trim() !== "");
+        section.classList.toggle("is-done", complete);
+      });
+    }
+
+    form.addEventListener("input", updateProgress);
+    form.addEventListener("change", updateProgress);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const params = new URLSearchParams({
+        name: form.elements["full-name"].value.trim(),
+        email: form.elements["email"].value.trim(),
+        course: form.elements["course"].value
+      });
+      window.location.href = "success.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>

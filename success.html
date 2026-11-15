@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghana Communication Technology University | Application submitted</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">G</span>
+      <span>
+        <strong>Ghana Communication Technology University</strong>
+        <span>Admissions</span>
+      </span>
+    </a>
+    <nav>
+      <a href="index.html">Campus</a>
+      <a href="apply.html">Apply</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="success">
+      <svg class="check-ring" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="18"></circle>
+        <path d="M15 25 l6 6 l12 -13"></path>
+      </svg>
+      <p class="eyebrow">Application received</p>
+      <h1 id="heading">You have successfully submitted your application</h1>
+      <p id="detail">
+        Thank you. Your application to Ghana Communication Technology University has been submitted. An email will be sent to you with the next steps.
+      </p>
+      <p class="cta">
+        <a class="button" href="index.html">Back to campus</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Ghana Communication Technology University · Admissions
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const email = params.get("email");
+    const course = params.get("course");
+    const heading = document.getElementById("heading");
+    const detail = document.getElementById("detail");
+
+    if (name) {
+      heading.textContent = name + ", you have successfully submitted your application";
+    }
+
+    if (email && course) {
+      detail.textContent = "Your application for " + course + " at Ghana Communication Technology University has been submitted. An email will be sent to " + email + " with the next steps.";
+    } else if (email) {
+      detail.textContent = "Your application has been submitted. An email will be sent to " + email + " with the next steps.";
+    }
+
+    const confetti = document.getElementById("confetti");
+    const colors = ["#e2b31c", "#0b3a73", "#ffffff", "#10b981", "#f97316"];
+    for (let i = 0; i < 36; i += 1) {
+      const piece = document.createElement("i");
+      piece.style.left = Math.random() * 100 + "%";
+      piece.style.background = colors[i % colors.length];
+      piece.style.animationDelay = Math.random() * 0.6 + "s";
+      piece.style.animationDuration = 2.2 + Math.random() * 1.6 + "s";
+      confetti.appendChild(piece);
+    }
+  </script>
+</body>
+</html>
