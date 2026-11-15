@@ -15,11 +15,22 @@
         <span>Tesano · Accra</span>
       </span>
     </a>
-    <nav>
+    <nav class="header-nav" aria-label="Site">
       <a href="index.html" aria-current="page">Campus</a>
       <a href="apply.html">Apply</a>
+      <a href="#faq">FAQ</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
   </header>
+  <div class="menu-backdrop" hidden></div>
+  <nav id="site-menu" class="side-menu" aria-hidden="true">
+    <p class="menu-kicker">Explore</p>
+    <a href="index.html" aria-current="page">Campus</a>
+    <a href="apply.html">Apply</a>
+    <a href="#faq">FAQ</a>
+  </nav>
 
   <main>
     <section class="banner">
@@ -237,6 +248,45 @@
         </tbody>
       </table>
     </section>
+
+    <section class="faq" id="faq">
+      <p class="eyebrow">Questions</p>
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        <details open>
+          <summary>When can I apply?</summary>
+          <p>This form is for the September 2026 intake. Pick that intake on the course step before you submit.</p>
+        </details>
+        <details>
+          <summary>What do I have to fill in?</summary>
+          <p>Four parts: personal details, educational history, course information, and a parent or guardian. Submit only appears after the guardian step.</p>
+        </details>
+        <details>
+          <summary>What if my results are not out yet?</summary>
+          <p>Leave the results upload blank. You can still submit. If you already have a slip, add a PDF or photo up to 5 MB.</p>
+        </details>
+        <details>
+          <summary>Which exams can I use?</summary>
+          <p>WASSCE, SSSCE, GBCE, HND, a GCTU diploma, or another qualification. Choose how you qualify on the course step.</p>
+        </details>
+        <details>
+          <summary>Which campuses can I choose?</summary>
+          <p>Tesano is the main campus. You can also choose Abeka, Kumasi, Ho, Koforidua, Takoradi, or Nungua.</p>
+        </details>
+        <details>
+          <summary>Which programmes are on the form?</summary>
+          <p>Degrees and diplomas from Computing and Information Systems, Engineering, and the Business School. The moving bar on this page lists them.</p>
+        </details>
+        <details>
+          <summary>What happens after I submit?</summary>
+          <p>You land on a confirmation page with your name, email, and course. That page is your proof that the application was submitted.</p>
+        </details>
+        <details>
+          <summary>Who can I contact?</summary>
+          <p>Ghana Communication Technology University, Tesano, PMB 100, Accra-North. Call +233 (0) 302 221 404 or email info@gctu.edu.gh.</p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <footer class="campus-footer">
@@ -252,7 +302,7 @@
       </div>
       <div>
         <strong>On this site</strong>
-        <p><a href="index.html">Campus pictures</a><br><a href="apply.html">Application form</a></p>
+        <p><a href="index.html">Campus pictures</a><br><a href="apply.html">Application form</a><br><a href="#faq">Frequently asked questions</a></p>
       </div>
     </div>
     <p class="footer-note">Admissions · September 2026 intake</p>
@@ -326,5 +376,6 @@
       requestAnimationFrame(tick);
     });
   </script>
+  <script src="menu.js"></script>
 </body>
 </html>

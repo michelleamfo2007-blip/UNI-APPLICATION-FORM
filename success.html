@@ -16,11 +16,22 @@
         <span>Admissions</span>
       </span>
     </a>
-    <nav>
+    <nav class="header-nav" aria-label="Site">
       <a href="index.html">Campus</a>
       <a href="apply.html">Apply</a>
+      <a href="index.html#faq">FAQ</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
   </header>
+  <div class="menu-backdrop" hidden></div>
+  <nav id="site-menu" class="side-menu" aria-hidden="true">
+    <p class="menu-kicker">Explore</p>
+    <a href="index.html">Campus</a>
+    <a href="apply.html">Apply</a>
+    <a href="index.html#faq">FAQ</a>
+  </nav>
 
   <main>
     <section class="success">
@@ -87,5 +98,6 @@
       confetti.appendChild(piece);
     }
   </script>
+  <script src="menu.js"></script>
 </body>
 </html>
