@@ -332,6 +332,49 @@ form {
   gap: 0.9rem;
 }
 
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepper li {
+  padding: 0.7rem 0.4rem;
+  border-radius: 999px;
+  background: white;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 750;
+  border: 1px solid #d5deea;
+}
+
+.stepper li.is-current {
+  background: var(--navy);
+  color: var(--gold);
+  border-color: var(--navy);
+}
+
+.stepper li.is-done {
+  background: #fff8df;
+  color: var(--navy-deep);
+  border-color: var(--gold);
+}
+
+fieldset:not(.is-current) {
+  display: none;
+}
+
+.button-back {
+  background: white;
+  color: var(--navy);
+  box-shadow: none;
+  border: 1px solid #d5deea;
+}
+
 fieldset {
   margin: 0;
   border: 0;
@@ -539,11 +582,72 @@ textarea {
   color: white;
 }
 
-.paths {
+.paths,
+.steps ol {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
+}
+
+.paths {
   margin: 1.3rem 0 0.4rem;
+}
+
+.steps {
+  margin-top: 1.6rem;
+}
+
+.steps h2 {
+  margin: 0;
+  color: var(--navy-deep);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.steps ol {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+}
+
+.steps li {
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem 1.05rem 1.1rem;
+  box-shadow: 0 12px 28px rgba(6, 38, 77, 0.08);
+  border-top: 3px solid var(--gold);
+  color: #334155;
+}
+
+.steps strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--gold-deep);
+  letter-spacing: 0.08em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.4rem 0 0.2rem;
+}
+
+.filter {
+  border: 1px solid #d5deea;
+  background: white;
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.filter.is-on {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold);
 }
 
 .path {
@@ -634,6 +738,13 @@ textarea {
   border-radius: inherit;
   background: linear-gradient(90deg, var(--navy), var(--gold));
   transition: width 0.35s ease;
+}
+
+.send-error {
+  min-height: 1.2rem;
+  margin: 0.8rem 0 0;
+  color: #9f1239;
+  font-weight: 700;
 }
 
 .progress-wrap p {
@@ -775,7 +886,9 @@ fieldset.is-done {
   }
 
   .paths,
-  .footer-grid {
-    grid-template-columns: 1fr;
+  .steps ol,
+  .footer-grid,
+  .stepper {
+    grid-template-columns: 1fr 1fr;
   }
 }

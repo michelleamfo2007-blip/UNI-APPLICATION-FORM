@@ -39,8 +39,23 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    Ghana Communication Technology University · Admissions
+  <footer class="campus-footer">
+    <div class="footer-grid">
+      <div>
+        <strong>Ghana Communication Technology University</strong>
+        <p>Knowledge comes from learning. Main campus at Tesano, Accra.</p>
+      </div>
+      <div>
+        <strong>Visit</strong>
+        <p>Tesano, Accra<br>PMB 100, Accra-North</p>
+        <p><a href="tel:+233302221404">+233 (0) 302 221 404</a><br><a href="mailto:info@gctu.edu.gh">info@gctu.edu.gh</a></p>
+      </div>
+      <div>
+        <strong>On this site</strong>
+        <p><a href="index.html">Campus pictures</a><br><a href="apply.html">Application form</a></p>
+      </div>
+    </div>
+    <p class="footer-note">Admissions · September 2026 intake</p>
   </footer>
 
   <script>
@@ -56,9 +71,9 @@
     }
 
     if (email && course) {
-      detail.textContent = "Your application for " + course + " at Ghana Communication Technology University has been submitted. An email will be sent to " + email + " with the next steps.";
+      detail.textContent = "Your application for " + course + " at Ghana Communication Technology University has been submitted. A confirmation email has been sent to " + email + ".";
     } else if (email) {
-      detail.textContent = "Your application has been submitted. An email will be sent to " + email + " with the next steps.";
+      detail.textContent = "Your application has been submitted. A confirmation email has been sent to " + email + ".";
     }
 
     const confetti = document.getElementById("confetti");

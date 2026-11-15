@@ -80,7 +80,32 @@
       </a>
     </section>
 
-    <table class="gallery">
+    <section class="steps">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps to apply</h2>
+      <ol>
+        <li>
+          <strong>01</strong>
+          Look through the campus pictures. Tap one to open it larger.
+        </li>
+        <li>
+          <strong>02</strong>
+          Complete personal details, school results, your course, and a parent or guardian.
+        </li>
+        <li>
+          <strong>03</strong>
+          Submit the form. A confirmation page says an email will be sent to you.
+        </li>
+      </ol>
+    </section>
+
+    <div class="filters" role="group" aria-label="Show pictures">
+      <button type="button" class="filter is-on" data-filter="all">All pictures</button>
+      <button type="button" class="filter" data-filter="campus">Campus</button>
+      <button type="button" class="filter" data-filter="new">New blocks</button>
+    </div>
+
+    <table class="gallery" id="campus-gallery">
       <tbody>
         <tr>
           <td>
@@ -238,6 +263,18 @@
       if (!viewer.open) return;
       if (event.key === "ArrowRight") showPhoto(current + 1);
       if (event.key === "ArrowLeft") showPhoto(current - 1);
+    });
+
+    const campusGallery = document.getElementById("campus-gallery");
+    const newBlocks = document.querySelector(".new-blocks");
+    document.querySelectorAll(".filter").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach((item) => item.classList.remove("is-on"));
+        button.classList.add("is-on");
+        const choice = button.dataset.filter;
+        campusGallery.hidden = choice === "new";
+        newBlocks.hidden = choice === "campus";
+      });
     });
 
     document.querySelectorAll("[data-count]").forEach((node) => {

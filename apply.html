@@ -26,8 +26,9 @@
       <p class="eyebrow">September 2026 intake</p>
       <h1>University application</h1>
       <p class="lede">
-        Fill in your personal details, school results, the programme you want, and a parent or guardian. After you submit, a confirmation page will tell you that an email is on the way.
+        One section at a time: personal details, school results, your course, then a parent or guardian.
       </p>
+      <p id="send-error" class="send-error" role="alert"></p>
       <div class="progress-wrap">
         <div class="progress-track" aria-hidden="true">
           <div class="progress-bar" id="progress-bar"></div>
@@ -37,7 +38,13 @@
     </section>
 
     <form id="application" action="success.html" method="get">
-      <fieldset>
+      <ol class="stepper" id="stepper">
+        <li class="is-current">Personal</li>
+        <li>Education</li>
+        <li>Course</li>
+        <li>Guardian</li>
+      </ol>
+      <fieldset class="is-current">
         <legend>Personal details</legend>
         <div class="fields">
           <label>
@@ -293,14 +300,31 @@
       </fieldset>
 
       <div class="form-actions">
-        <button class="button" type="submit">Submit application</button>
+        <button class="button button-back" id="step-back" type="button" hidden>Back</button>
+        <button class="button" id="step-next" type="button">Next section</button>
+        <button class="button" id="step-submit" type="submit" hidden>Submit application</button>
         <a class="ghost" href="index.html">Back to campus</a>
       </div>
     </form>
   </main>
 
-  <footer class="site-footer">
-    Ghana Communication Technology University · Admissions · This practice form opens a confirmation page in your browser.
+  <footer class="campus-footer">
+    <div class="footer-grid">
+      <div>
+        <strong>Ghana Communication Technology University</strong>
+        <p>Knowledge comes from learning. Main campus at Tesano, Accra.</p>
+      </div>
+      <div>
+        <strong>Visit</strong>
+        <p>Tesano, Accra<br>PMB 100, Accra-North</p>
+        <p><a href="tel:+233302221404">+233 (0) 302 221 404</a><br><a href="mailto:info@gctu.edu.gh">info@gctu.edu.gh</a></p>
+      </div>
+      <div>
+        <strong>On this site</strong>
+        <p><a href="index.html">Campus pictures</a><br><a href="apply.html">Application form</a></p>
+      </div>
+    </div>
+    <p class="footer-note">Admissions · September 2026 intake</p>
   </footer>
 
   <script>
@@ -324,14 +348,64 @@
     form.addEventListener("input", updateProgress);
     form.addEventListener("change", updateProgress);
 
+    const sections = Array.from(form.querySelectorAll("fieldset"));
+    const stepItems = Array.from(document.querySelectorAll("#stepper li"));
+    const backButton = document.getElementById("step-back");
+    const nextButton = document.getElementById("step-next");
+    const submitButton = document.getElementById("step-submit");
+    let step = 0;
+
+    function showStep(index) {
+      step = index;
+      sections.forEach((section, item) => section.classList.toggle("is-current", item === step));
+      stepItems.forEach((item, itemIndex) => {
+        item.classList.toggle("is-current", itemIndex === step);
+        item.classList.toggle("is-done", itemIndex < step);
+      });
+      backButton.hidden = step === 0;
+      nextButton.hidden = step === sections.length - 1;
+      submitButton.hidden = step !== sections.length - 1;
+    }
+
+    nextButton.addEventListener("click", () => {
+      const fields = Array.from(sections[step].querySelectorAll("[required]"));
+      const invalid = fields.find((field) => !field.reportValidity());
+      if (invalid) return;
+      showStep(step + 1);
+    });
+
+    backButton.addEventListener("click", () => showStep(step - 1));
+
+    const sendError = document.getElementById("send-error");
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const params = new URLSearchParams({
-        name: form.elements["full-name"].value.trim(),
-        email: form.elements["email"].value.trim(),
-        course: form.elements["course"].value
-      });
-      window.location.href = "success.html?" + params.toString();
+      const submitButton = form.querySelector("[type=submit]");
+      const name = form.elements["full-name"].value.trim();
+      const email = form.elements["email"].value.trim();
+      const course = form.elements["course"].value;
+      sendError.textContent = "";
+      submitButton.disabled = true;
+
+      fetch("/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email, course: course })
+      })
+        .then((response) => response.json().then((data) => ({ ok: response.ok, data: data })))
+        .then((result) => {
+          if (!result.ok || !result.data.ok) {
+            sendError.textContent = result.data.error || "The confirmation email could not be sent.";
+            submitButton.disabled = false;
+            return;
+          }
+          const params = new URLSearchParams({ name: name, email: email, course: course });
+          window.location.href = "success.html?" + params.toString();
+        })
+        .catch(() => {
+          sendError.textContent = "The confirmation email could not be sent. Open the site from the local server, not as a file.";
+          submitButton.disabled = false;
+        });
     });
   </script>
 </body>
