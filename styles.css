@@ -542,6 +542,8 @@ label.wide {
 input,
 select,
 textarea {
+  width: 100%;
+  min-height: 2.85rem;
   font: inherit;
   font-weight: 550;
   color: var(--ink);
